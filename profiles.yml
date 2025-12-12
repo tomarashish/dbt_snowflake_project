@@ -1,0 +1,26 @@
+opentarget_snowflake:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: <your_snowflake_account>  # e.g., xy12345.us-east-1
+      
+      # User/password auth
+      user: <your_snowflake_username>
+      password: <your_snowflake_password>
+      
+      # Alternative: SSO authentication
+      # authenticator: externalbrowser
+      
+      role: <your_snowflake_role>  # e.g., ACCOUNTADMIN, or a custom role
+      database: OPENTARGET_DB
+      warehouse: <your_snowflake_warehouse>  # e.g., COMPUTE_WH
+      schema: PUBLIC
+      threads: 4
+      client_session_keep_alive: True
+      query_tag: dbt_opentarget
+      
+      # Optional timeout configurations
+      connect_timeout: 15
+      retry_on_database_errors: True
+      retry_all: True

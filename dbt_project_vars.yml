@@ -1,0 +1,24 @@
+# This file contains variables that are used across the dbt project
+# These can be referenced in models using {{ var('variable_name') }}
+
+vars:
+  # Snowflake stage name for Open Target data
+  opentarget_stage: 'OPENTARGET_STAGE'
+  
+  # Data version
+  opentarget_version: '23.09'
+  
+  # Local data directory (relative to project root)
+  local_data_dir: 'data'
+  
+  # Cloud storage path for parquet files
+  # Replace with your actual cloud storage path if using one
+  # Example for AWS S3: 's3://your-bucket/opentarget-data/'
+  # Example for GCS: 'gcs://your-bucket/opentarget-data/'
+  # For local files, use 'file:///path/to/data/'
+  cloud_storage_path: 'file:///data/opentarget/'
+  
+  # Schema configuration
+  staging_schema: 'staging'
+  intermediate_schema: 'intermediate'
+  marts_schema: 'marts'
