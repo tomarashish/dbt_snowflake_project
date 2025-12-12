@@ -1,0 +1,92 @@
+version: 2
+
+models:
+  - name: stg_targets
+    description: "Staging model for Open Target Platform targets data"
+    columns:
+      - name: id
+        description: "Target ID (Ensembl gene ID)"
+        tests:
+          - unique
+          - not_null
+      - name: approved_name
+        description: "Approved gene name"
+      - name: approved_symbol
+        description: "Approved gene symbol"
+      - name: biotype
+        description: "Gene biotype"
+
+  - name: stg_diseases
+    description: "Staging model for Open Target Platform diseases data"
+    columns:
+      - name: id
+        description: "Disease ID (EFO ID)"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "Disease name"
+      - name: description
+        description: "Disease description"
+
+  - name: stg_evidence
+    description: "Staging model for Open Target Platform evidence data"
+    columns:
+      - name: target_id
+        description: "Target ID (Ensembl gene ID)"
+      - name: disease_id
+        description: "Disease ID (EFO ID)"
+      - name: datasource
+        description: "Evidence data source"
+      - name: score
+        description: "Evidence score"
+
+  - name: stg_associations
+    description: "Staging model for Open Target Platform target-disease associations"
+    columns:
+      - name: target_id
+        description: "Target ID (Ensembl gene ID)"
+      - name: disease_id
+        description: "Disease ID (EFO ID)"
+      - name: score_overall
+        description: "Overall association score"
+      - name: score_direct
+        description: "Direct association score"
+      - name: score_indirect
+        description: "Indirect association score"
+
+  - name: int_target_disease
+    description: "Intermediate model combining target and disease data with associations"
+    columns:
+      - name: target_id
+        description: "Target ID (Ensembl gene ID)"
+      - name: disease_id
+        description: "Disease ID (EFO ID)"
+      - name: target_name
+        description: "Target name"
+      - name: target_symbol
+        description: "Target symbol"
+      - name: disease_name
+        description: "Disease name"
+      - name: association_score
+        description: "Association score"
+
+  - name: mart_target_disease_associations
+    description: "Final mart model for target-disease associations with evidence"
+    columns:
+      - name: target_id
+        description: "Target ID (Ensembl gene ID)"
+      - name: disease_id
+        description: "Disease ID (EFO ID)"
+      - name: target_name
+        description: "Target name"
+      - name: target_symbol
+        description: "Target symbol"
+      - name: disease_name
+        description: "Disease name"
+      - name: association_score
+        description: "Association score"
+      - name: evidence_count
+        description: "Count of evidence supporting this association"
+      - name: max_evidence_score
+        description: "Maximum evidence score"
